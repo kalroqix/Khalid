@@ -1,6 +1,6 @@
 # Khalid – AI Agent Coordination Framework
 
-**Khalid** is a configuration-based framework for coordinating GitHub Copilot agents and prompts. It enables structured, multi-agent collaboration for software development with specialized roles: Planning, Building, and Reviewing.
+**Khalid** is a configuration-based framework for coordinating GitHub Copilot agents and prompts. It enables structured, multi-agent collaboration for software development, document intelligence, and Arabic legal analysis through specialized agent roles.
 
 ## 🎯 Purpose
 
@@ -9,6 +9,8 @@ Khalid provides a reusable system for GitHub Copilot to work in coordinated team
 - **Planner** — Analyzes requirements and creates detailed work breakdowns
 - **Builder** — Implements code changes, writes tests, ensures quality
 - **Reviewer** — Audits code, identifies bugs, suggests improvements
+- **Document Research** — Extracts documents, preserves Arabic RTL text, performs deep research, and finds strong code references
+- **Arabic Legal Analyst** — Applies cautious Arabic legal analysis to sensitive evidence-heavy records without overstating certainty
 
 Plus a **Project Operator** agent to manage Khalid itself.
 
@@ -23,6 +25,7 @@ Plus a **Project Operator** agent to manage Khalid itself.
 | **Reviewer** | Reviews code, checks standards, identifies issues | Before merging, validating quality, refactoring sessions |
 | **Operator** | Manages Khalid repository, coordinates agents, improves framework | Maintaining Khalid, adding new agents/prompts |
 | **Document Research** | Analyzes documents, extracts Arabic text, performs deep research, finds code on GitHub | Extracting from PDFs/images, researching topics, discovering code patterns, Arabic intelligence |
+| **Arabic Legal Analyst** | Performs cautious Arabic legal analysis for sensitive documents and case files | Labor, HR, disciplinary, legal, and evidence-heavy materials that need strict fact/inference separation |
 
 ### Prompts (`.github/prompts/`)
 
@@ -143,6 +146,16 @@ When researching topics:
 - Clearly marks confidence levels and identifies gaps
 - Cites all sources and access dates
 
+### Arabic Legal Analysis Collaboration
+
+Khalid also includes an **Arabic Legal Analyst** agent that works alongside the **Document Research Agent** for sensitive legal and evidentiary review.
+
+- **Document Research Agent** handles extraction, RTL preservation, verification, and source gathering
+- **Arabic Legal Analyst** applies cautious legal framing to the verified record without overstating certainty
+- Legal analysis is structured into **Verified Facts**, **Plausible Inferences**, and **Unresolved Points**
+- Final legal outputs also end with **Top 3 Critical Points**, what proves each point, what is still missing, and short formal wording suitable for a memo, objection, complaint, or legal summary
+- This keeps Khalid accurate as a GitHub Copilot agent framework for document and legal analysis workflows, not a substitute for licensed legal advice or a standalone legal platform
+
 ### GitHub Code Pattern Discovery
 
 When searching for code implementations:
@@ -212,6 +225,18 @@ Document Research Agent will:
 - Recommend the best match with explanation
 ```
 
+### Example: Legal or Disciplinary Review
+
+```
+You: "Use Document Research Agent to extract this Arabic disciplinary file, then use Arabic Legal Analyst to prepare a cautious summary for an objection memo"
+
+Workflow will:
+- Extract and validate the file while preserving Arabic RTL order
+- Separate reliable text from uncertain fragments
+- Organize the legal analysis into Verified Facts, Plausible Inferences, and Unresolved Points
+- End with Top 3 Critical Points, supporting proof, missing items, and short formal Arabic wording
+```
+
 ## 🔧 Extending Khalid
 
 ### Add a New Agent
@@ -247,7 +272,8 @@ Khalid/
 │   │   ├── builder.agent.md            ← Implement code
 │   │   ├── reviewer.agent.md           ← Review code quality
 │   │   ├── operator.agent.md           ← Manage Khalid
-│   │   └── document-research.agent.md  ← Arabic & document intelligence
+│   │   ├── document-research.agent.md  ← Arabic & document intelligence
+│   │   └── legal-arabic.agent.md       ← Arabic legal analysis companion
 │   ├── prompts/
 │   │   ├── build-feature.prompt.md
 │   │   ├── debug-bug.prompt.md
