@@ -22,6 +22,7 @@ Plus a **Project Operator** agent to manage Khalid itself.
 | **Builder** | Implements code changes, writes tests, runs validation | Implementing planned work, fixing bugs, building features |
 | **Reviewer** | Reviews code, checks standards, identifies issues | Before merging, validating quality, refactoring sessions |
 | **Operator** | Manages Khalid repository, coordinates agents, improves framework | Maintaining Khalid, adding new agents/prompts |
+| **Document Research** | Analyzes documents, extracts Arabic text, performs deep research, finds code on GitHub | Extracting from PDFs/images, researching topics, discovering code patterns, Arabic intelligence |
 
 ### Prompts (`.github/prompts/`)
 
@@ -30,6 +31,7 @@ Plus a **Project Operator** agent to manage Khalid itself.
 | **build-feature** | Implement new features end-to-end |
 | **debug-bug** | Identify and fix bugs systematically |
 | **review-refactor** | Review code and suggest refactoring |
+| **analyze-document-and-research** | Extract from documents, perform deep research, discover code patterns |
 
 ### Instructions (`copilot-instructions.md`)
 
@@ -113,6 +115,103 @@ Reviewer will:
 - Recommend additional tests
 ```
 
+## 🌍 Arabic Language & Document Intelligence
+
+Khalid now includes specialized capabilities for Arabic language processing and document analysis:
+
+### Arabic-First Understanding
+
+When working with Arabic content, the Document Research Agent:
+- Preserves Arabic semantic meaning and cultural context
+- Maintains right-to-left (RTL) text direction throughout extraction and analysis
+- Respects proper names, dates, numerics, and punctuation
+- Never reverses Arabic text order or breaks formatting
+
+### Document Text Extraction
+
+The Document Research Agent can:
+- Extract text from PDFs accurately (preferring native extraction over OCR)
+- Identify extraction barriers (encryption, image-only, degraded quality)
+- Preserve document structure, formatting, and hierarchy
+- Distinguish **verified extraction** (confirmed via native method) from **interpreted** text (inferred) and **uncertain** fragments (ambiguous/unclear)
+
+### Deep Research & Evidence
+
+When researching topics:
+- Performs evidence-based, source-grounded research with citations
+- Cross-references multiple sources to verify claims
+- Clearly marks confidence levels and identifies gaps
+- Cites all sources and access dates
+
+### GitHub Code Pattern Discovery
+
+When searching for code implementations:
+- Filters repositories by quality metrics (stars, maintenance, code quality, documentation)
+- Ranks results by credibility, recent maintenance, and practical relevance
+- Provides multiple options with comparative pros/cons analysis
+- Explains why recommended implementations are suitable for the task
+
+### Document Research Workflow
+
+Use the **analyze-document-and-research** prompt to guide a systematic workflow:
+1. Inspect and identify document format
+2. Extract text carefully with validation
+3. Validate Arabic reading order and structure (if applicable)
+4. Separate verified extraction from interpretation and uncertainty
+5. Identify key facts and entities
+6. Perform targeted deep research where needed
+7. Search GitHub for relevant code patterns (if coding involved)
+8. Generate structured final report with citations and confidence levels
+
+### Limitations & Transparency
+
+- **Not a runtime platform:** Khalid is a GitHub Copilot agent framework, not a Python/Node.js/Docker runtime
+- **Requires GitHub Copilot:** All capabilities depend on GitHub Copilot Chat in VS Code
+- **AI-assisted accuracy:** While Document Research agents are designed for precision, always verify critical information independently
+- **OCR limitations:** Scanned documents with poor quality may require manual review
+- **Language complexity:** Very specialized Arabic dialects or historical texts may require domain expert review
+- **Code discovery limitations:** GitHub search reflects available public repositories; not all code is published
+
+## 📝 Using the Document Research Agent in Chat
+
+### Example: Extract Arabic Contract
+
+```
+You: "Extract the key terms from this Arabic commercial contract PDF"
+
+Document Research Agent will:
+- Inspect the PDF structure
+- Extract text while preserving Arabic RTL order
+- Identify verified vs. uncertain sections
+- Extract key dates, parties, amounts, deliverables
+- Return structured extraction with confidence levels
+```
+
+### Example: Research & Verify
+
+```
+You: "Research whether the company name and registration date in this document are accurate"
+
+Document Research Agent will:
+- Extract company name and date from document
+- Search for official records or verification sources
+- Cross-reference findings
+- Report what was verified, conflicts found, or gaps
+- Provide source citations and confidence levels
+```
+
+### Example: Find Code on GitHub
+
+```
+You: "Find a well-maintained Arabic text extraction library for PDFs"
+
+Document Research Agent will:
+- Search GitHub for relevant libraries
+- Rank by stars, maintenance status, documentation quality
+- Compare top 3 options with pros/cons
+- Recommend the best match with explanation
+```
+
 ## 🔧 Extending Khalid
 
 ### Add a New Agent
@@ -144,18 +243,20 @@ Reviewer will:
 Khalid/
 ├── .github/
 │   ├── agents/
-│   │   ├── planner.agent.md       ← Plan work & subtasks
-│   │   ├── builder.agent.md       ← Implement code
-│   │   ├── reviewer.agent.md      ← Review code quality
-│   │   └── operator.agent.md      ← Manage Khalid
+│   │   ├── planner.agent.md            ← Plan work & subtasks
+│   │   ├── builder.agent.md            ← Implement code
+│   │   ├── reviewer.agent.md           ← Review code quality
+│   │   ├── operator.agent.md           ← Manage Khalid
+│   │   └── document-research.agent.md  ← Arabic & document intelligence
 │   ├── prompts/
 │   │   ├── build-feature.prompt.md
 │   │   ├── debug-bug.prompt.md
-│   │   └── review-refactor.prompt.md
+│   │   ├── review-refactor.prompt.md
+│   │   └── analyze-document-and-research.prompt.md
 │   └── workflows/
-│       └── blank.yml              ← CI/CD template
-├── copilot-instructions.md        ← Global AI guidelines
-└── README.md                       ← This file
+│       └── blank.yml                   ← CI/CD template
+├── copilot-instructions.md             ← Global AI guidelines
+└── README.md                            ← This file
 ```
 
 ## 🔄 Git Workflow
