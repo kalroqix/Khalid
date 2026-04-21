@@ -35,6 +35,7 @@ Plus a **Project Operator** agent to manage Khalid itself.
 | **debug-bug** | Identify and fix bugs systematically |
 | **review-refactor** | Review code and suggest refactoring |
 | **analyze-document-and-research** | Extract from documents, perform deep research, discover code patterns |
+| **analyze-saudi-labor-dispute** | Analyze Saudi labor disputes, HR/disciplinary files, chronology, evidence, and procedural fairness with Arabic-first formal wording |
 
 ### Instructions (`copilot-instructions.md`)
 
@@ -154,6 +155,7 @@ Khalid also includes an **Arabic Legal Analyst** agent that works alongside the 
 - **Arabic Legal Analyst** applies cautious legal framing to the verified record without overstating certainty
 - Legal analysis is structured into **Verified Facts**, **Plausible Inferences**, and **Unresolved Points**
 - Final legal outputs also end with **Top 3 Critical Points**, what proves each point, what is still missing, and short formal wording suitable for a memo, objection, complaint, or legal summary
+- For Saudi-context labor and HR matters, the **analyze-saudi-labor-dispute** prompt coordinates both agents to build an employment chronology, map evidence and contradictions, record procedural fairness observations, and produce Arabic-first formal wording suitable for objections, grievances, or labor office submissions — without asserting specific statutory outcomes
 - This keeps Khalid accurate as a GitHub Copilot agent framework for document and legal analysis workflows, not a substitute for licensed legal advice or a standalone legal platform
 
 ### GitHub Code Pattern Discovery
@@ -278,7 +280,8 @@ Khalid/
 │   │   ├── build-feature.prompt.md
 │   │   ├── debug-bug.prompt.md
 │   │   ├── review-refactor.prompt.md
-│   │   └── analyze-document-and-research.prompt.md
+│   │   ├── analyze-document-and-research.prompt.md
+│   │   └── analyze-saudi-labor-dispute.prompt.md
 │   └── workflows/
 │       └── blank.yml                   ← CI/CD template
 ├── copilot-instructions.md             ← Global AI guidelines
