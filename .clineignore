@@ -1,0 +1,41 @@
+# ===== Cline Security Ignore File =====
+# يمنع Cline من قراءة هذه الملفات لحمايتك
+
+# Secrets & API Keys
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
+*credential*
+*secret*
+*token*
+
+# Personal data
+*.kdbx
+*.password*
+auth.json
+config.private.*
+
+# Cloud / SSH keys
+.aws/
+.ssh/
+gcloud/
+azure/
+
+# Heavy / unneeded folders
+node_modules/
+dist/
+build/
+.next/
+.cache/
+__pycache__/
+*.log
+*.lock
+
+# Git internals
+.git/objects/
+.git/refs/

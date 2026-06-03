@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push *)",
+      "Bash(git -C c:/Users/kalro/OneDrive/المستندات/GitHub/Khalid-Sniper-EA-v1 add -A)",
+      "Bash(git -C c:/Users/kalro/OneDrive/المستندات/GitHub/Khalid-Sniper-EA-v1 status)",
+      "Bash(git -C c:/Users/kalro/OneDrive/المستندات/GitHub/Khalid-Sniper-EA-v1 commit -m ' *)",
+      "Bash(git -C c:/Users/kalro/OneDrive/المستندات/GitHub/Khalid-Sniper-EA-v1 log --oneline -1)",
+      "Bash(git -C c:/Users/kalro/OneDrive/المستندات/GitHub/Khalid-Sniper-EA-v1 ls-files)"
+    ]
+  }
+}
